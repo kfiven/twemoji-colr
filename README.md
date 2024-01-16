@@ -51,7 +51,7 @@ You can then compress this into a WOFF via `woff2_compress`
 This branch contains a fairly ugly attempt to support emitting an sbix font as an alternative
 to COLR/CPAL.  For this to work:
 
- * Grab the latest twemoji release from https://github.com/twitter/twemoji/releases
+ * Grab the latest twemoji release from https://github.com/jdecked/twemoji/releases
  * Expand it and symlink the `2/72x72` (or `assets/72x72` for twemoji 13) directory into this checkout
  * Create a new twe-svg.zip: `mv twe-svg.zip twe-svg.zip.old; zip -rj twe-svg.zip twemoji-13.0.0/assets/svg`
  * Check that `isSbix = true` in layerize.js
