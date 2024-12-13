@@ -1,0 +1,26 @@
+name: Build font
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-font:
+    name: Build font
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.0
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Setup node
+        uses: actions/setup-node@v4.0.4
+        with:
+          node-version: 20.12.2
+          cache: 'yarn'
+      - name: Install deps
+        run: yarn
+      - name: Install fontforge
+        run: sudo apt-get install fonttools fontforge python-fontforge
+      - name: Build
+        run: make
