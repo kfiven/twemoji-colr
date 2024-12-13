@@ -21,6 +21,6 @@ jobs:
       - name: Install deps
         run: yarn
       - name: Install fontforge
-        run: sudo apt-get install fonttools fontforge python-fontforge
+        run: sudo apt-get install fonttools fontforge python3-fontforge
       - name: Build
         run: make
