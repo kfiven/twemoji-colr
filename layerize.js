@@ -10,7 +10,7 @@ var extrasDir    = process.argv[4];
 var targetDir    = process.argv[5];
 var fontName     = process.argv[6];
 
-var isSbix = true;
+var isSbix = false;
 
 if (fontName == undefined) {
     console.error("### Missing font name.");
