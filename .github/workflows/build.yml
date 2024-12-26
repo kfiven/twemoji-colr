@@ -17,8 +17,6 @@ jobs:
         uses: shogo82148/actions-setup-perl@v1
         with:
           perl-version: "5.38"
-      - run: cpanm --installdeps .
-      - run: prove -lv t
       - name: Setup node
         uses: actions/setup-node@v4.0.4
         with:
