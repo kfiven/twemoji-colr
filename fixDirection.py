@@ -1,9 +1,9 @@
-import python3-fontforge
+import fontforge as ff
 import sys
 
 fontfile = sys.argv[1]
 
-f = python3-fontforge.open(fontfile)
+f = ff.open(fontfile)
 
 for glyph in f.glyphs():
     glyph.correctDirection()
