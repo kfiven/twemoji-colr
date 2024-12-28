@@ -24,19 +24,21 @@ jobs:
           cache: 'yarn'
       - name: Install deps
         run: yarn
-      - name: Build fontforge
-        run: git clone https://github.com/fontforge/fontforge.git
-      - name: one
-        run: sudo apt-get install libjpeg-dev libtiff5-dev libpng-dev libfreetype6-dev libgif-dev libgtk-3-dev libxml2-dev libpango1.0-dev libcairo2-dev libspiro-dev libwoff-dev python3-dev ninja-build cmake build-essential gettext
-      - name: two
-        run: |
-            cd fontforge
-            mkdir build
-            cd build
-            cmake -GNinja ..
-            ninja
-            sudo ninja install
+      # - name: Build fontforge
+      #   run: |
+      #       git clone https://github.com/fontforge/fontforge.git
+      #       sudo apt-get install libjpeg-dev libtiff5-dev libpng-dev libfreetype6-dev libgif-dev libgtk-3-dev libxml2-dev libpango1.0-dev libcairo2-dev libspiro-dev libwoff-dev python3-dev ninja-build cmake build-essential gettext
+      #       cd fontforge
+      #       mkdir build
+      #       cd build
+      #       cmake -GNinja ..
+      #       ninja
+      #       sudo ninja install
       - name: Install fontforge
-        run: sudo apt-get install fonttools fontforge python3-fontforge
+        run: sudo apt-get install fonttools fontforge python3-fontforge python3-pip
+      - name: ff pip
+        run: |
+            pip3 search fontforge
+            pip3 show fontforge
       - name: Build
         run: make
