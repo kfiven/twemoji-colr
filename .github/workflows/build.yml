@@ -37,8 +37,6 @@ jobs:
       - name: Install fontforge
         run: sudo apt-get install fonttools fontforge python3-fontforge python3-pip
       - name: ff pip
-        run: |
-            pip3 search fontforge
-            pip3 show fontforge
+        run: pip3 show fontforge
       - name: Build
         run: make
