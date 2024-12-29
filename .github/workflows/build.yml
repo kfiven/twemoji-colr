@@ -36,5 +36,9 @@ jobs:
       #       sudo ninja install
       - name: Install fontforge
         run: sudo apt-get install fonttools fontforge python3-fontforge
+      - name: List packages
+        run: |
+            dpkg -L fontforge
+            dpkg -L python3-fontforge
       - name: Build
         run: make
