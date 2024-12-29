@@ -1,5 +1,5 @@
-import fontforge
-import sys
+from fontforge import *
+from sys import argv
 
 fontfile = sys.argv[1]
 
