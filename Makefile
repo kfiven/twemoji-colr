@@ -1,7 +1,7 @@
 NPM        ?= npm
 NODE       ?= node
 PERL       ?= perl
-PYTHON     ?= /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3
+PYTHON     ?= python3
 TTX        ?= ttx
 
 FONT_NAME  = Twemoji\ Mozilla
