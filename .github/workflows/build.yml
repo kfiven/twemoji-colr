@@ -45,5 +45,7 @@ jobs:
             which python3
             dpkg -L fontforge
             dpkg -L python3-fontforge
+            /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3 -m pip install fontforge
+            /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3 -c "import fontforge"
       - name: Build
         run: make
