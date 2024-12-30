@@ -42,7 +42,7 @@ jobs:
             sudo apt-get install fontforge python3-fontforge
       - name: List packages
         run: |
-            python3
+            which python3
             dpkg -L fontforge
             dpkg -L python3-fontforge
       - name: Build
