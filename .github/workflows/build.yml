@@ -42,10 +42,18 @@ jobs:
             sudo apt-get install fontforge python3-fontforge
       - name: List packages
         run: |
+            # Check Python installation
             which python3
+            python3 --version
+
+            # Check if FontForge binary is installed
+            which fontforge
+            fontforge --version
+            
             dpkg -L fontforge
             dpkg -L python3-fontforge
-            /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3 -m pip install python3-fontforge
-            /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3 -c "import fontforge"
+
+            /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3 -m pip install fontforge
+            /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3 -c "import fontforge; print('FontForge is working!')"
       - name: Build
         run: make
