@@ -53,7 +53,7 @@ jobs:
             dpkg -L fontforge
             dpkg -L python3-fontforge
 
-            /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3 -m pip install fontforge
+            /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3 -m pip install python3-fontforge
             /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3 -c "import fontforge; print('FontForge is working!')"
       - name: Build
         run: make
