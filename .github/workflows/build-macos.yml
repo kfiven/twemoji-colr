@@ -1,0 +1,62 @@
+name: Build font
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-font:
+    name: Build font
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.2.0
+
+      - name: Setup Python 3.12.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12
+
+      - name: Install Perl
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: "5.38"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.0.4
+        with:
+          node-version: 20.12.2
+          cache: 'yarn'
+
+      - name: Install Node.js dependencies via yarn
+        run: |
+          yarn install
+
+      - name: Install FontForge and FontTools via Homebrew
+        run: |
+          # Install Homebrew if not already installed
+          if ! command -v brew &> /dev/null
+          then
+            echo "Homebrew not found, installing..."
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          else
+            echo "Homebrew is already installed"
+          fi
+
+          # Install FontForge and FontTools using Homebrew
+          brew install fontforge fonttools
+
+      - name: List installed packages and check Python 3.12
+        run: |
+          # Check Python installation
+          which python3
+          python3 --version
+          
+          # Check if FontForge binary is installed
+          which fontforge
+          fontforge --version
+          
+          # Ensure FontForge Python bindings can be imported
+          python3 -c "import fontforge; print('FontForge is working!')"
+
+      - name: Build font
+        run: make
