@@ -21,7 +21,7 @@ jobs:
         with:
           perl-version: "5.38"
 
-      - name: Setup Node.js
+      - name: Setup Node.js and Yarn
         uses: actions/setup-node@v4.0.4
         with:
           node-version: 20.12.2
@@ -31,20 +31,45 @@ jobs:
         run: |
           yarn install
 
-      - name: Install FontForge and FontTools via Homebrew
+      - name: Install build dependencies for FontForge
         run: |
-          # Install Homebrew if not already installed
-          if ! command -v brew &> /dev/null
-          then
-            echo "Homebrew not found, installing..."
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          else
-            echo "Homebrew is already installed"
-          fi
+          # Install required libraries to build FontForge
+          brew install \
+            automake \
+            libtool \
+            pkg-config \
+            cairo \
+            pango \
+            icu4c \
+            fontconfig \
+            harfbuzz \
+            libpng \
+            libspiro \
+            freetype \
+            fonttools \
+            python@3.12
 
-          # Install FontForge and FontTools using Homebrew
-          brew install fontforge fonttools
-          brew install ttfautohint fontforge --with-python
+      - name: Clone FontForge repository
+        run: |
+          # Clone FontForge repository and checkout the latest stable version
+          git clone https://github.com/fontforge/fontforge.git
+          cd fontforge
+          git checkout master # You can also checkout a release tag if needed
+
+      - name: Build FontForge from source
+        run: |
+          # Build FontForge from source
+          cd fontforge
+          ./autogen.sh  # Prepare build environment
+          ./configure --with-python --enable-python3
+          make
+          sudo make install
+
+      - name: Install FontForge Python bindings
+        run: |
+          # Install FontForge Python bindings
+          sudo python3 -m pip install --upgrade pip
+          sudo python3 -m pip install fontforge
 
       - name: List installed packages and check Python 3.12
         run: |
@@ -57,7 +82,7 @@ jobs:
           fontforge --version
           
           # Ensure FontForge Python bindings can be imported
-          # python3 -c "import fontforge; print('FontForge is working!')"
+          python3 -c "import fontforge; print('FontForge is working!')"
 
       - name: Build font
         run: make
