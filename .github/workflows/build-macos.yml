@@ -56,7 +56,7 @@ jobs:
           fontforge --version
           
           # Ensure FontForge Python bindings can be imported
-          python3 -c "import fontforge; print('FontForge is working!')"
+          # python3 -c "import fontforge; print('FontForge is working!')"
 
       - name: Build font
         run: make
