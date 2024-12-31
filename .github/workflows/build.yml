@@ -53,7 +53,14 @@ jobs:
             dpkg -L fontforge
             dpkg -L python3-fontforge
 
-            # /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3 -m pip install python3-fontforge
-            /opt/hostedtoolcache/Python/3.9.20/x64/bin/python3 -c "import fontforge; print('FontForge is working!')"
+            # /opt/hostedtoolcache/Python/3.12.8/x64/bin/python3 -m pip install python3-fontforge
+            /opt/hostedtoolcache/Python/3.12.8/x64/bin/python3 -c "import fontforge; print('FontForge is working!')"
+      - name: Install fontforge Python bindings for the correct Python version
+        run: |
+          sudo ln -s /usr/lib/python3/dist-packages/fontforge.cpython-310-x86_64-linux-gnu.so /usr/lib/python3.12/dist-packages/fontforge.cpython-39-x86_64-linux-gnu.so
+
+      - name: Verify fontforge import for Python 3.12.8
+        run: |
+          /opt/hostedtoolcache/Python/3.12.8/x64/bin/python3 -c "import fontforge; print('FontForge is working!')"
       - name: Build
         run: make
