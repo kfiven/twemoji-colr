@@ -44,6 +44,7 @@ jobs:
 
           # Install FontForge and FontTools using Homebrew
           brew install fontforge fonttools
+          brew install ttfautohint fontforge --with-python
 
       - name: List installed packages and check Python 3.12
         run: |
