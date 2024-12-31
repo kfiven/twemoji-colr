@@ -60,7 +60,6 @@ jobs:
         run: |
           # Build FontForge from source
           cd fontforge
-          ./autogen.sh  # Prepare build environment
           ./configure --with-python --enable-python3
           make
           sudo make install
