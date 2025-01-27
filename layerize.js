@@ -10,7 +10,7 @@ var extrasDir    = process.argv[4];
 var targetDir    = process.argv[5];
 var fontName     = process.argv[6];
 
-var isSbix = true;
+var isSbix = false;
 
 if (fontName == undefined) {
     console.error("### Missing font name.");
@@ -1007,6 +1007,11 @@ function generateTTX() {
             ligatureSets[startGlyph] = [];
         }
         ligatureSets[startGlyph].push({components: components, glyph: glyphName});
+        // work around https://github.com/element-hq/element-web/issues/28500
+        if (lig.unicodes.includes('fe0f') && lig.unicodes.length > 2) {
+            components = "u" + lig.unicodes.slice(1).filter(u => u !== 'fe0f').join(",u");
+            ligatureSets[startGlyph].push({components: components, glyph: glyphName});
+        }
     }
     ligatures.forEach(addLigToSet);
     extraLigatures.forEach(addLigToSet);
