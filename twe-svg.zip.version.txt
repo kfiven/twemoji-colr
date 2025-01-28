@@ -1,1 +1,1 @@
-Zipped copy of the assets/svg directory from https://github.com/jdecked/twemoji/releases/tag/v15.0.3
+Zipped copy of the assets/svg directory from https://github.com/jdecked/twemoji/releases/tag/v15.1.0
