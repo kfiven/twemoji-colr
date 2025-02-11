@@ -31,56 +31,59 @@ jobs:
         run: |
           yarn install
 
-      - name: Install build dependencies for FontForge
-        run: |
-          # Install required libraries to build FontForge
-          brew install \
-            automake \
-            libtool \
-            pkg-config \
-            cairo \
-            pango \
-            icu4c \
-            fontconfig \
-            harfbuzz \
-            libpng \
-            libspiro \
-            freetype \
-            fonttools \
-            python@3.12
+      # - name: Install build dependencies for FontForge
+      #   run: |
+      #     # Install required libraries to build FontForge
+      #     brew install \
+      #       automake \
+      #       libtool \
+      #       pkg-config \
+      #       cairo \
+      #       pango \
+      #       icu4c \
+      #       fontconfig \
+      #       harfbuzz \
+      #       libpng \
+      #       libspiro \
+      #       freetype \
+      #       fonttools \
+      #       python@3.12
 
-      - name: Clone FontForge repository
-        run: |
-          # Clone FontForge repository and checkout the latest stable version
-          git clone https://github.com/fontforge/fontforge.git
-          cd fontforge
-          git checkout master # You can also checkout a release tag if needed
+      # - name: Clone FontForge repository
+      #   run: |
+      #     # Clone FontForge repository and checkout the latest stable version
+      #     git clone https://github.com/fontforge/fontforge.git
+      #     cd fontforge
+      #     git checkout master # You can also checkout a release tag if needed
 
-      - name: Build FontForge from source
-        run: |
-          # Build FontForge from source
-          cd fontforge
-          make
-          sudo make install
+      # - name: Build FontForge from source
+      #   run: |
+      #     # Build FontForge from source
+      #     cd fontforge
+      #     make
+      #     sudo make install
 
-      - name: Install FontForge Python bindings
-        run: |
-          # Install FontForge Python bindings
-          sudo python3 -m pip install --upgrade pip
-          sudo python3 -m pip install fontforge
+      # - name: Install FontForge Python bindings
+      #   run: |
+      #     # Install FontForge Python bindings
+      #     sudo python3 -m pip install --upgrade pip
+      #     sudo python3 -m pip install fontforge
 
-      - name: List installed packages and check Python 3.12
-        run: |
-          # Check Python installation
-          which python3
-          python3 --version
+      # - name: List installed packages and check Python 3.12
+      #   run: |
+      #     # Check Python installation
+      #     which python3
+      #     python3 --version
           
-          # Check if FontForge binary is installed
-          which fontforge
-          fontforge --version
+      #     # Check if FontForge binary is installed
+      #     which fontforge
+      #     fontforge --version
           
-          # Ensure FontForge Python bindings can be imported
-          python3 -c "import fontforge; print('FontForge is working!')"
+      #     # Ensure FontForge Python bindings can be imported
+      #     python3 -c "import fontforge; print('FontForge is working!')"
+
+      - name: Install fontforge
+        run: brew install fonttools fontforge
 
       - name: Build font
         run: make
