@@ -83,7 +83,7 @@ jobs:
       #     python3 -c "import fontforge; print('FontForge is working!')"
 
       - name: Install fontforge
-        run: brew install fonttools fontforge
+        run: brew install fonttools ttfautohint fontforge --with-python
 
       - name: Build font
         run: make
