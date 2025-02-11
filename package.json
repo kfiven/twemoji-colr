@@ -18,9 +18,10 @@
   "dependencies": {
     "grunt": "^1.0.2",
     "grunt-cli": "^1.2.0",
-    "grunt-webfont": "^1.6.0",
+    "grunt-webfont": "^1.7.2",
     "load-grunt-tasks": "^3.5.2",
     "rmdir": "^1.2.0",
+    "ttf2woff2": "^4.0.0",
     "unzip": "^0.1.11",
     "xml2js": "^0.4.19",
     "xmlbuilder": "^8.2.2"
